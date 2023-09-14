@@ -21,14 +21,19 @@ set ADC_SAMPLING_RATE [get_env_param ADC_SAMPLING_RATE 1800000]
 
 source ../common/ad40xx_bd.tcl
 
-set mem_init_sys_path [get_env_param ADI_PROJECT_DIR ""]mem_init_sys.txt;
-
 #system ID
 ad_ip_parameter axi_sysid_0 CONFIG.ROM_ADDR_BITS 9
-ad_ip_parameter rom_sys_0 CONFIG.PATH_TO_FILE "[pwd]/$mem_init_sys_path"
+ad_ip_parameter rom_sys_0 CONFIG.PATH_TO_FILE "$mem_init_sys_file_path/mem_init_sys.txt"
 ad_ip_parameter rom_sys_0 CONFIG.ROM_ADDR_BITS 9
 
 set AD40XX_ADAQ400X_N [get_env_param AD40XX_ADAQ400X_N 1]
-set sys_cstring "ad40xx: $AD40XX_ADAQ400X_N - adc_sampling_rate: $ADC_SAMPLING_RATE - adc_resolution: $ADC_RESOLUTION"
-sysid_gen_sys_init_file $sys_cstring
+if {$AD40XX_ADAQ400X_N == 0} {
+    set chip_name "ADAQ400X"
+} else {
+    set chip_name "AD40XX"
+}
+set sys_cstring "$chip_name\
+ADC_SAMPLING_RATE=$ADC_SAMPLING_RATE\
+ADC_RESOLUTION=$ADC_RESOLUTION"
 
+sysid_gen_sys_init_file $sys_cstring
