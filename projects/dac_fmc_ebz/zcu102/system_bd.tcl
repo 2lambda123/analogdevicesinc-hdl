@@ -86,5 +86,3 @@ set ADI_DAC_DEVICE $::env(ADI_DAC_DEVICE)
 set ADI_DAC_MODE $::env(ADI_DAC_MODE)
 set sys_cstring "$ADI_DAC_DEVICE - $ADI_DAC_MODE"
 sysid_gen_sys_init_file $sys_cstring
-
-
