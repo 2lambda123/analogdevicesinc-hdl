@@ -32,59 +32,59 @@
 //
 // ***************************************************************************
 // ***************************************************************************
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
 module axi_time_tx #(
-  parameter  COUNT_WIDTH = 64,
-  parameter  DATA_WIDTH = 64,
-  parameter  AXIS_ID = 8,
-  parameter  AXIS_DEST = 4
+    parameter COUNT_WIDTH = 64,
+    parameter DATA_WIDTH = 64,
+    parameter AXIS_ID = 8,
+    parameter AXIS_DEST = 4
 ) (
 
-  input  logic                     clk,
-  input  logic                     resetn,
+    input logic clk,
+    input logic resetn,
 
-  input  logic                     time_enable,
-  output logic                     time_running,
-  output logic                     time_underrun,
+    input  logic time_enable,
+    output logic time_running,
+    output logic time_underrun,
 
-  input  logic [COUNT_WIDTH-1:0]   time_counter,
-  output logic [COUNT_WIDTH-1:0]   time_capture,
-  input  logic [COUNT_WIDTH-1:0]   time_trigger,
+    input  logic [COUNT_WIDTH-1:0] time_counter,
+    output logic [COUNT_WIDTH-1:0] time_capture,
+    input  logic [COUNT_WIDTH-1:0] time_trigger,
 
-  output logic                     time_capture_valid,
-  output logic                     time_trigger_ready,
-  input  logic                     time_trigger_valid,
+    output logic time_capture_valid,
+    output logic time_trigger_ready,
+    input  logic time_trigger_valid,
 
-  output logic                     s_axis_ready,
-  input  logic                     s_axis_valid,
-  input  logic [DATA_WIDTH-1:0]    s_axis_data,
-  input  logic [DATA_WIDTH/8-1:0]  s_axis_strb,
-  input  logic [DATA_WIDTH/8-1:0]  s_axis_keep,
-  input  logic [0:0]               s_axis_user,
-  input  logic [AXIS_ID-1:0]       s_axis_id,
-  input  logic [AXIS_DEST-1:0]     s_axis_dest,
-  input  logic                     s_axis_last,
-  input  logic                     s_axis_xfer_req,
+    output logic                    s_axis_ready,
+    input  logic                    s_axis_valid,
+    input  logic [  DATA_WIDTH-1:0] s_axis_data,
+    input  logic [DATA_WIDTH/8-1:0] s_axis_strb,
+    input  logic [DATA_WIDTH/8-1:0] s_axis_keep,
+    input  logic [             0:0] s_axis_user,
+    input  logic [     AXIS_ID-1:0] s_axis_id,
+    input  logic [   AXIS_DEST-1:0] s_axis_dest,
+    input  logic                    s_axis_last,
+    input  logic                    s_axis_xfer_req,
 
-  input  logic                     m_axis_ready,
-  output logic                     m_axis_valid,
-  output logic [DATA_WIDTH-1:0]    m_axis_data,
-  output logic [DATA_WIDTH/8-1:0]  m_axis_strb,
-  output logic [DATA_WIDTH/8-1:0]  m_axis_keep,
-  output logic [0:0]               m_axis_user,
-  output logic [AXIS_ID-1:0]       m_axis_id,
-  output logic [AXIS_DEST-1:0]     m_axis_dest,
-  output logic                     m_axis_last,
-  output logic                     m_axis_xfer_req
+    input  logic                    m_axis_ready,
+    output logic                    m_axis_valid,
+    output logic [  DATA_WIDTH-1:0] m_axis_data,
+    output logic [DATA_WIDTH/8-1:0] m_axis_strb,
+    output logic [DATA_WIDTH/8-1:0] m_axis_keep,
+    output logic [             0:0] m_axis_user,
+    output logic [     AXIS_ID-1:0] m_axis_id,
+    output logic [   AXIS_DEST-1:0] m_axis_dest,
+    output logic                    m_axis_last,
+    output logic                    m_axis_xfer_req
 );
 
   // Internal registers/wires
-  logic                   capture_active;
-  logic                   capture_trigger;
-  logic                   trigger_active;
-  logic                   trigger_init;
-  logic                   data_en;
+  logic capture_active;
+  logic capture_trigger;
+  logic trigger_active;
+  logic trigger_init;
+  logic data_en;
 
   always @(posedge clk) begin
     if (resetn == 1'b0) begin

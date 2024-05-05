@@ -32,46 +32,46 @@
 //
 // ***************************************************************************
 // ***************************************************************************
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
 module axi_time_rx #(
-  parameter  COUNT_WIDTH = 64,
-  parameter  DATA_WIDTH = 64
+    parameter COUNT_WIDTH = 64,
+    parameter DATA_WIDTH  = 64
 ) (
 
-  input  logic                     clk,
-  input  logic                     resetn,
+    input logic clk,
+    input logic resetn,
 
-  input  logic                     time_enable,
-  output logic                     time_running,
-  output logic                     time_underrun,
+    input  logic time_enable,
+    output logic time_running,
+    output logic time_underrun,
 
-  input  logic [COUNT_WIDTH-1:0]   time_counter,
-  output logic [COUNT_WIDTH-1:0]   time_capture,
-  input  logic [COUNT_WIDTH-1:0]   time_trigger,
+    input  logic [COUNT_WIDTH-1:0] time_counter,
+    output logic [COUNT_WIDTH-1:0] time_capture,
+    input  logic [COUNT_WIDTH-1:0] time_trigger,
 
-  output logic                     time_capture_valid,
-  output logic                     time_trigger_ready,
-  input  logic                     time_trigger_valid,
+    output logic time_capture_valid,
+    output logic time_trigger_ready,
+    input  logic time_trigger_valid,
 
-  input  logic                     fifo_wr_in_en,
-  input  logic [DATA_WIDTH-1:0]    fifo_wr_in_data,
-  output logic                     fifo_wr_in_overflow,
-  input  logic                     fifo_wr_in_sync,
-  output logic                     fifo_wr_in_xfer_req,
+    input  logic                  fifo_wr_in_en,
+    input  logic [DATA_WIDTH-1:0] fifo_wr_in_data,
+    output logic                  fifo_wr_in_overflow,
+    input  logic                  fifo_wr_in_sync,
+    output logic                  fifo_wr_in_xfer_req,
 
-  output logic                     fifo_wr_out_en,
-  output logic [DATA_WIDTH-1:0]    fifo_wr_out_data,
-  input  logic                     fifo_wr_out_overflow,
-  output logic                     fifo_wr_out_sync,
-  input  logic                     fifo_wr_out_xfer_req
+    output logic                  fifo_wr_out_en,
+    output logic [DATA_WIDTH-1:0] fifo_wr_out_data,
+    input  logic                  fifo_wr_out_overflow,
+    output logic                  fifo_wr_out_sync,
+    input  logic                  fifo_wr_out_xfer_req
 );
 
   // Internal registers/wires
-  logic                   capture_active;
-  logic                   capture_trigger;
-  logic                   trigger_active;
-  logic                   data_en;
+  logic capture_active;
+  logic capture_trigger;
+  logic trigger_active;
+  logic data_en;
 
   always @(posedge clk) begin
     if (resetn == 1'b0) begin

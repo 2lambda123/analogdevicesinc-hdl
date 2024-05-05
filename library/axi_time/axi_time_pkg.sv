@@ -35,9 +35,7 @@
 
 package axi_time_pkg;
 
-  localparam
-    PCORE_VERSION = 32'h00000062,
-    PCORE_MAGIC   = 32'h54494D45; // "TIME", big endian
+  localparam PCORE_VERSION = 32'h00000062, PCORE_MAGIC = 32'h54494D45;  // "TIME", big endian
 
   // register address offset
   localparam

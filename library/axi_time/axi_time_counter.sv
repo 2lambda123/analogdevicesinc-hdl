@@ -32,28 +32,28 @@
 //
 // ***************************************************************************
 // ***************************************************************************
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
 module axi_time_counter #(
-  parameter  COUNT_WIDTH = 64,
-  parameter  SYNC_EXTERNAL = 1,
-  parameter  SYNC_EXTERNAL_CDC = 1
+    parameter COUNT_WIDTH = 64,
+    parameter SYNC_EXTERNAL = 1,
+    parameter SYNC_EXTERNAL_CDC = 1
 ) (
 
-  input  logic                         clk,
-  input  logic                         resetn,
+    input logic clk,
+    input logic resetn,
 
-  input  logic                         sync_in,
+    input logic sync_in,
 
-  input  logic                         time_enable,
-  input  logic                         time_sync_ext,
-  input  logic                         time_sync_soft,
+    input logic time_enable,
+    input logic time_sync_ext,
+    input logic time_sync_soft,
 
-  output logic                         time_overwrite_ready,
-  input  logic                         time_overwrite_valid,
+    output logic time_overwrite_ready,
+    input  logic time_overwrite_valid,
 
-  output logic [COUNT_WIDTH-1:0]       time_counter,
-  input  logic [COUNT_WIDTH-1:0]       time_overwrite
+    output logic [COUNT_WIDTH-1:0] time_counter,
+    input  logic [COUNT_WIDTH-1:0] time_overwrite
 );
 
   // package import
