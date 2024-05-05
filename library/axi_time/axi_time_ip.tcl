@@ -133,4 +133,3 @@ set_property -dict [list \
 ipx::create_xgui_files [ipx::current_core]
 
 ipx::save_core [ipx::current_core]
-

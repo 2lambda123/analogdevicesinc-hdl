@@ -32,4 +32,3 @@ ad_ip_files axi_time [list\
 set group "General Configuration"
 
 # interfaces
-

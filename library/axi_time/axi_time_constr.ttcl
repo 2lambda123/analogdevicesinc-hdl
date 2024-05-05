@@ -123,4 +123,3 @@ set_false_path \
 
 set_false_path \
   -to [get_pins -hierarchical * -filter {NAME=~*i_raddr_sync_gray/cdc_sync_stage1_reg[*]/D}]
-

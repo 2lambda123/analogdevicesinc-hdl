@@ -247,4 +247,3 @@ ad_mem_hp1_interconnect $sys_cpu_clk axi_ad9361_adc_dma/m_sg_axi
 
 ad_cpu_interrupt ps-13 mb-12 axi_ad9361_adc_dma/irq
 ad_cpu_interrupt ps-12 mb-13 axi_ad9361_dac_dma/irq
-
